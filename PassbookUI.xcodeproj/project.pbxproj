@@ -12,13 +12,17 @@
 		2364953B18C4BC7B004FE225 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2364953A18C4BC7B004FE225 /* UIKit.framework */; };
 		2364954118C4BC7B004FE225 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2364953F18C4BC7B004FE225 /* InfoPlist.strings */; };
 		2364954318C4BC7B004FE225 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2364954218C4BC7B004FE225 /* main.m */; };
-		2364954718C4BC7B004FE225 /* PBUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2364954618C4BC7B004FE225 /* PBUAppDelegate.m */; };
-		2364954918C4BC7B004FE225 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2364954818C4BC7B004FE225 /* Images.xcassets */; };
 		2364955018C4BC7B004FE225 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2364954F18C4BC7B004FE225 /* XCTest.framework */; };
 		2364955118C4BC7B004FE225 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2364953618C4BC7B004FE225 /* Foundation.framework */; };
 		2364955218C4BC7B004FE225 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2364953A18C4BC7B004FE225 /* UIKit.framework */; };
 		2364955A18C4BC7B004FE225 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2364955818C4BC7B004FE225 /* InfoPlist.strings */; };
 		2364955C18C4BC7B004FE225 /* PassbookUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2364955B18C4BC7B004FE225 /* PassbookUITests.m */; };
+		2364956D18C4BCCB004FE225 /* PBUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2364956818C4BCCB004FE225 /* PBUAppDelegate.m */; };
+		2364956E18C4BCCB004FE225 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2364956C18C4BCCB004FE225 /* Images.xcassets */; };
+		2364957018C4BCDF004FE225 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2364956F18C4BCDF004FE225 /* iPhone.storyboard */; };
+		2364957A18C4BF03004FE225 /* PBUPassbookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2364957918C4BF03004FE225 /* PBUPassbookController.m */; };
+		2364958018C4BF88004FE225 /* PBUPassViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2364957F18C4BF88004FE225 /* PBUPassViewCell.m */; };
+		2364958318C4C596004FE225 /* PBUPassbookLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2364958218C4C596004FE225 /* PBUPassbookLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,14 +44,21 @@
 		2364954018C4BC7B004FE225 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2364954218C4BC7B004FE225 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2364954418C4BC7B004FE225 /* PassbookUI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PassbookUI-Prefix.pch"; sourceTree = "<group>"; };
-		2364954518C4BC7B004FE225 /* PBUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBUAppDelegate.h; sourceTree = "<group>"; };
-		2364954618C4BC7B004FE225 /* PBUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBUAppDelegate.m; sourceTree = "<group>"; };
-		2364954818C4BC7B004FE225 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2364954E18C4BC7B004FE225 /* PassbookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PassbookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2364954F18C4BC7B004FE225 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		2364955718C4BC7B004FE225 /* PassbookUITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PassbookUITests-Info.plist"; sourceTree = "<group>"; };
 		2364955918C4BC7B004FE225 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2364955B18C4BC7B004FE225 /* PassbookUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PassbookUITests.m; sourceTree = "<group>"; };
+		2364956718C4BCCB004FE225 /* PBUAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUAppDelegate.h; sourceTree = "<group>"; };
+		2364956818C4BCCB004FE225 /* PBUAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBUAppDelegate.m; sourceTree = "<group>"; };
+		2364956C18C4BCCB004FE225 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2364956F18C4BCDF004FE225 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
+		2364957818C4BF03004FE225 /* PBUPassbookController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUPassbookController.h; sourceTree = "<group>"; };
+		2364957918C4BF03004FE225 /* PBUPassbookController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBUPassbookController.m; sourceTree = "<group>"; };
+		2364957E18C4BF88004FE225 /* PBUPassViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUPassViewCell.h; sourceTree = "<group>"; };
+		2364957F18C4BF88004FE225 /* PBUPassViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBUPassViewCell.m; sourceTree = "<group>"; };
+		2364958118C4C596004FE225 /* PBUPassbookLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUPassbookLayout.h; sourceTree = "<group>"; };
+		2364958218C4C596004FE225 /* PBUPassbookLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBUPassbookLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,9 +118,8 @@
 		2364953C18C4BC7B004FE225 /* PassbookUI */ = {
 			isa = PBXGroup;
 			children = (
-				2364954518C4BC7B004FE225 /* PBUAppDelegate.h */,
-				2364954618C4BC7B004FE225 /* PBUAppDelegate.m */,
-				2364954818C4BC7B004FE225 /* Images.xcassets */,
+				2364956518C4BCCB004FE225 /* Classes */,
+				2364956B18C4BCCB004FE225 /* Resources */,
 				2364953D18C4BC7B004FE225 /* Supporting Files */,
 			);
 			path = PassbookUI;
@@ -142,6 +152,54 @@
 				2364955818C4BC7B004FE225 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2364956518C4BCCB004FE225 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2364956618C4BCCB004FE225 /* AppDelegate */,
+				2364957718C4BF03004FE225 /* ViewControllers */,
+				2364956A18C4BCCB004FE225 /* Views */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		2364956618C4BCCB004FE225 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				2364956718C4BCCB004FE225 /* PBUAppDelegate.h */,
+				2364956818C4BCCB004FE225 /* PBUAppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		2364956A18C4BCCB004FE225 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2364957E18C4BF88004FE225 /* PBUPassViewCell.h */,
+				2364957F18C4BF88004FE225 /* PBUPassViewCell.m */,
+				2364958118C4C596004FE225 /* PBUPassbookLayout.h */,
+				2364958218C4C596004FE225 /* PBUPassbookLayout.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2364956B18C4BCCB004FE225 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2364956F18C4BCDF004FE225 /* iPhone.storyboard */,
+				2364956C18C4BCCB004FE225 /* Images.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2364957718C4BF03004FE225 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2364957818C4BF03004FE225 /* PBUPassbookController.h */,
+				2364957918C4BF03004FE225 /* PBUPassbookController.m */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,7 +279,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2364954118C4BC7B004FE225 /* InfoPlist.strings in Resources */,
-				2364954918C4BC7B004FE225 /* Images.xcassets in Resources */,
+				2364957018C4BCDF004FE225 /* iPhone.storyboard in Resources */,
+				2364956E18C4BCCB004FE225 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +299,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2364954718C4BC7B004FE225 /* PBUAppDelegate.m in Sources */,
+				2364958318C4C596004FE225 /* PBUPassbookLayout.m in Sources */,
+				2364957A18C4BF03004FE225 /* PBUPassbookController.m in Sources */,
+				2364958018C4BF88004FE225 /* PBUPassViewCell.m in Sources */,
+				2364956D18C4BCCB004FE225 /* PBUAppDelegate.m in Sources */,
 				2364954318C4BC7B004FE225 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
