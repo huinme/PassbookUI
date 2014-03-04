@@ -66,8 +66,6 @@
     cell = [collectionView dequeueReusableCellWithReuseIdentifier:[PBUPassViewCell reuseIdentifier]
                                                      forIndexPath:indexPath];
 
-    cell.backgroundColor = [UIColor lightGrayColor];
-
     return cell;
 }
 

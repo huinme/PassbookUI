@@ -10,6 +10,9 @@
 
 @interface PBUPassViewCell : UICollectionViewCell
 
+@property (nonatomic, strong, readonly) UIView *contentView;
+
+
 + (NSString *)reuseIdentifier;
 
 @end

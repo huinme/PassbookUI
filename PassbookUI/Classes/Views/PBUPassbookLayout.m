@@ -63,10 +63,10 @@
     UICollectionViewLayoutAttributes *attributes;
     attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
 
-    CGFloat hPadding = 4.0f;
+    CGFloat hPadding = 2.0f;
     // size
     attributes.size = CGSizeMake(CGRectGetWidth(self.collectionView.bounds) - hPadding,
-                                 400.0f);
+                                 420.0f);
 
     // frame
     CGRect frame = CGRectZero;
@@ -74,6 +74,9 @@
     frame.origin.y = ([self collectionViewContentSize].height/items) * indexPath.row;
     frame.size = attributes.size;
     attributes.frame = frame;
+
+    // bounds
+    attributes.bounds = CGRectMake(0.0f, 0.0f, attributes.size.width, attributes.size.height);
 
     // alpha
     attributes.alpha = 1.0f;
