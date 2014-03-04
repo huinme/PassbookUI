@@ -14,12 +14,16 @@
 #import "PBUPassViewCell.h"
 
 @interface PBUPassbookController ()
-<UICollectionViewDataSource,
+<PBUPassViewCellDelegate,
+ UICollectionViewDataSource,
  UICollectionViewDelegate>
 
 @property (nonatomic, weak, readwrite) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong, readwrite) PBUPassListLayout *listLayout;
 @property (nonatomic, strong, readwrite) PBUPickedPassLayout *pickedLayout;
+
+- (void)updateCollectionViewWithLayout:(UICollectionViewLayout *)layout
+                              animated:(BOOL)animated;
 
 @end
 
@@ -48,6 +52,31 @@
 {
     return UIStatusBarStyleLightContent;
 }
+
+/// ----------------------------------------------------------------------------
+#pragma mark - Privates
+/// ----------------------------------------------------------------------------
+
+- (void)updateCollectionViewWithLayout:(UICollectionViewLayout *)layout
+                              animated:(BOOL)animated
+                            completion:(void (^)(BOOL finished))completion
+{
+    [UIView animateWithDuration:0.7f
+                          delay:0.0f
+         usingSpringWithDamping:3.0f
+          initialSpringVelocity:0.01f
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         [self.collectionView setCollectionViewLayout:layout
+                                                             animated:YES
+                                                           completion:completion];
+                     }
+                     completion:nil];
+}
+
+/// ----------------------------------------------------------------------------
+#pragma mark - Custom Accessors
+/// ----------------------------------------------------------------------------
 
 - (PBUPassListLayout *)listLayout
 {
@@ -88,8 +117,17 @@
     cell = [collectionView dequeueReusableCellWithReuseIdentifier:[PBUPassViewCell reuseIdentifier]
                                                      forIndexPath:indexPath];
 
-    NSString *title = [NSString stringWithFormat:@"INDEX PATH : {%ld, %ld}", indexPath.section, indexPath.row];
+    cell.delegate = self;
+
+    NSString *title = [NSString stringWithFormat:@"INDEX PATH : {%ld, %ld}", (long)indexPath.section, (long)indexPath.row];
     cell.titleLabel.text = title;
+
+    id layout = self.collectionView.collectionViewLayout;
+    if ([layout isKindOfClass:[PBUPickedPassLayout class]]) {
+        cell.draggable = YES;
+    }else{
+        cell.draggable = NO;
+    }
 
     return cell;
 }
@@ -114,17 +152,36 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
         layout = self.pickedLayout;
     }
 
-    [UIView animateWithDuration:0.8f
-                          delay:0.0f
-         usingSpringWithDamping:3.0f
-          initialSpringVelocity:0.01f
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         [self.collectionView setCollectionViewLayout:layout
-                                                             animated:YES
-                                                           completion:nil];
-                     }
-                     completion:nil];
+    [self updateCollectionViewWithLayout:layout
+                                animated:YES
+                              completion:^(BOOL finished) {
+                                  [self.collectionView reloadData];
+                                  if (self.collectionView.collectionViewLayout == self.pickedLayout) {
+                                      self.collectionView.scrollEnabled = NO;
+                                  }else{
+                                      self.collectionView.scrollEnabled = YES;
+                                  }
+                              }];
+}
+
+/// ----------------------------------------------------------------------------
+#pragma mark - PBUPassViewCellDelegate
+/// ----------------------------------------------------------------------------
+
+- (void)passCellShouldDeselect:(PBUPassViewCell *)cell
+{
+    self.pickedLayout.selectedIndexPath = nil;
+    [self updateCollectionViewWithLayout:self.listLayout
+                                animated:YES
+                              completion:^(BOOL finished) {
+                                  [self.collectionView reloadData];
+                                  self.collectionView.scrollEnabled = YES;
+                              }];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+//    NSLog(@"offset : %@", NSStringFromCGPoint(scrollView.contentOffset));
 }
 
 @end
