@@ -12,7 +12,8 @@
 
 @interface PBUPassViewCell()
 
-@property (nonatomic, strong, readwrite) UIView *contentView;
+@property (nonatomic, weak, readwrite) IBOutlet UIView *contentView;
+@property (nonatomic, weak, readwrite) IBOutlet UILabel *titleLabel;
 
 - (void)setup;
 
@@ -24,6 +25,7 @@
 @implementation PBUPassViewCell
 
 @synthesize contentView = _contentView;
+@synthesize titleLabel  = _titleLabel;
 
 + (NSString *)reuseIdentifier
 {
@@ -68,9 +70,7 @@
     self.layer.shadowPath = path;
 
     // draw content view
-    if (self.contentView.superview != self) {
-        [self addSubview:self.contentView];
-    }
+    [self addSubview:self.contentView];
     self.contentView.frame = self.bounds;
 
     // clip content view with path
@@ -80,15 +80,10 @@
     self.contentView.layer.mask = mask;
 }
 
-- (UIView *)contentView
-{
-    if (!_contentView) {
-        _contentView = [[UIView alloc] initWithFrame:CGRectZero];
-        _contentView.backgroundColor = [UIColor whiteColor];
-    }
+/// ----------------------------------------------------------------------------
+#pragma mark - Privtes
+/// ----------------------------------------------------------------------------
 
-    return _contentView;
-}
 
 - (UIBezierPath *)roundPathWithSize:(CGSize)size
                        cornerRadius:(CGFloat)radius

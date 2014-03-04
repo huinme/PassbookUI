@@ -8,7 +8,9 @@
 
 #import "PBUPassbookController.h"
 
-#import "PBUPassbookLayout.h"
+#import "PBUPassListLayout.h"
+#import "PBUPickedPassLayout.h"
+
 #import "PBUPassViewCell.h"
 
 @interface PBUPassbookController ()
@@ -16,6 +18,8 @@
  UICollectionViewDelegate>
 
 @property (nonatomic, weak, readwrite) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong, readwrite) PBUPassListLayout *listLayout;
+@property (nonatomic, strong, readwrite) PBUPickedPassLayout *pickedLayout;
 
 @end
 
@@ -25,12 +29,13 @@
 {
     [super viewDidLoad];
 
-    self.collectionView.collectionViewLayout = [[PBUPassbookLayout alloc] init];
+    self.collectionView.collectionViewLayout = [[PBUPassListLayout alloc] init];
     self.collectionView.contentInset = UIEdgeInsetsMake(20.0f, 0.0f, 0.0f, 0.0f);
     self.collectionView.scrollIndicatorInsets = self.collectionView.contentInset;
 
-    [self.collectionView registerClass:[PBUPassViewCell class]
-            forCellWithReuseIdentifier:[PBUPassViewCell reuseIdentifier]];
+    UINib *nib = [UINib nibWithNibName:NSStringFromClass([PBUPassViewCell class]) bundle:nil];
+    [self.collectionView registerNib:nib
+          forCellWithReuseIdentifier:[PBUPassViewCell reuseIdentifier]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,6 +47,23 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+- (PBUPassListLayout *)listLayout
+{
+    if (!_listLayout) {
+        _listLayout = [[PBUPassListLayout alloc] init];
+    }
+    return _listLayout;
+}
+
+- (PBUPickedPassLayout *)pickedLayout
+{
+    if (!_pickedLayout) {
+        _pickedLayout = [[PBUPickedPassLayout alloc] init];
+    }
+
+    return _pickedLayout;
 }
 
 ///-----------------------------------------------------------------------------
@@ -66,6 +88,9 @@
     cell = [collectionView dequeueReusableCellWithReuseIdentifier:[PBUPassViewCell reuseIdentifier]
                                                      forIndexPath:indexPath];
 
+    NSString *title = [NSString stringWithFormat:@"INDEX PATH : {%ld, %ld}", indexPath.section, indexPath.row];
+    cell.titleLabel.text = title;
+
     return cell;
 }
 
@@ -78,7 +103,28 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
 
-    NSLog(@"item at {%ld, %ld} was selected.", indexPath.section, indexPath.row);
+    UICollectionViewLayout *layout;
+    if (self.pickedLayout.selectedIndexPath) {
+        NSLog(@"LAYOUT FOR LIST");
+        self.pickedLayout.selectedIndexPath= nil;
+        layout = self.listLayout;
+    }else{
+        NSLog(@"LAYOUT FOR PICKED");
+        self.pickedLayout.selectedIndexPath= indexPath;
+        layout = self.pickedLayout;
+    }
+
+    [UIView animateWithDuration:0.8f
+                          delay:0.0f
+         usingSpringWithDamping:3.0f
+          initialSpringVelocity:0.01f
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         [self.collectionView setCollectionViewLayout:layout
+                                                             animated:YES
+                                                           completion:nil];
+                     }
+                     completion:nil];
 }
 
 @end

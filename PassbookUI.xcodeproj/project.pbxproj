@@ -22,7 +22,9 @@
 		2364957018C4BCDF004FE225 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2364956F18C4BCDF004FE225 /* iPhone.storyboard */; };
 		2364957A18C4BF03004FE225 /* PBUPassbookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2364957918C4BF03004FE225 /* PBUPassbookController.m */; };
 		2364958018C4BF88004FE225 /* PBUPassViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2364957F18C4BF88004FE225 /* PBUPassViewCell.m */; };
-		2364958318C4C596004FE225 /* PBUPassbookLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2364958218C4C596004FE225 /* PBUPassbookLayout.m */; };
+		2364958318C4C596004FE225 /* PBUPassListLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2364958218C4C596004FE225 /* PBUPassListLayout.m */; };
+		C5219C3718C5661100DC2835 /* PBUPickedPassLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C5219C3618C5661100DC2835 /* PBUPickedPassLayout.m */; };
+		C5219C3918C574F100DC2835 /* PBUPassViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5219C3818C574F100DC2835 /* PBUPassViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +59,11 @@
 		2364957918C4BF03004FE225 /* PBUPassbookController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBUPassbookController.m; sourceTree = "<group>"; };
 		2364957E18C4BF88004FE225 /* PBUPassViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUPassViewCell.h; sourceTree = "<group>"; };
 		2364957F18C4BF88004FE225 /* PBUPassViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBUPassViewCell.m; sourceTree = "<group>"; };
-		2364958118C4C596004FE225 /* PBUPassbookLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUPassbookLayout.h; sourceTree = "<group>"; };
-		2364958218C4C596004FE225 /* PBUPassbookLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBUPassbookLayout.m; sourceTree = "<group>"; };
+		2364958118C4C596004FE225 /* PBUPassListLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUPassListLayout.h; sourceTree = "<group>"; };
+		2364958218C4C596004FE225 /* PBUPassListLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBUPassListLayout.m; sourceTree = "<group>"; };
+		C5219C3518C5661100DC2835 /* PBUPickedPassLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBUPickedPassLayout.h; sourceTree = "<group>"; };
+		C5219C3618C5661100DC2835 /* PBUPickedPassLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBUPickedPassLayout.m; sourceTree = "<group>"; };
+		C5219C3818C574F100DC2835 /* PBUPassViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PBUPassViewCell.xib; path = PassbookUI/Resources/PBUPassViewCell.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,8 +183,10 @@
 			children = (
 				2364957E18C4BF88004FE225 /* PBUPassViewCell.h */,
 				2364957F18C4BF88004FE225 /* PBUPassViewCell.m */,
-				2364958118C4C596004FE225 /* PBUPassbookLayout.h */,
-				2364958218C4C596004FE225 /* PBUPassbookLayout.m */,
+				2364958118C4C596004FE225 /* PBUPassListLayout.h */,
+				2364958218C4C596004FE225 /* PBUPassListLayout.m */,
+				C5219C3518C5661100DC2835 /* PBUPickedPassLayout.h */,
+				C5219C3618C5661100DC2835 /* PBUPickedPassLayout.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,6 +194,7 @@
 		2364956B18C4BCCB004FE225 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C5219C3818C574F100DC2835 /* PBUPassViewCell.xib */,
 				2364956F18C4BCDF004FE225 /* iPhone.storyboard */,
 				2364956C18C4BCCB004FE225 /* Images.xcassets */,
 			);
@@ -279,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2364954118C4BC7B004FE225 /* InfoPlist.strings in Resources */,
+				C5219C3918C574F100DC2835 /* PBUPassViewCell.xib in Resources */,
 				2364957018C4BCDF004FE225 /* iPhone.storyboard in Resources */,
 				2364956E18C4BCCB004FE225 /* Images.xcassets in Resources */,
 			);
@@ -299,8 +308,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2364958318C4C596004FE225 /* PBUPassbookLayout.m in Sources */,
+				2364958318C4C596004FE225 /* PBUPassListLayout.m in Sources */,
 				2364957A18C4BF03004FE225 /* PBUPassbookController.m in Sources */,
+				C5219C3718C5661100DC2835 /* PBUPickedPassLayout.m in Sources */,
 				2364958018C4BF88004FE225 /* PBUPassViewCell.m in Sources */,
 				2364956D18C4BCCB004FE225 /* PBUAppDelegate.m in Sources */,
 				2364954318C4BC7B004FE225 /* main.m in Sources */,
@@ -504,6 +514,7 @@
 				2364956118C4BC7B004FE225 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2364956218C4BC7B004FE225 /* Build configuration list for PBXNativeTarget "PassbookUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +523,7 @@
 				2364956418C4BC7B004FE225 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

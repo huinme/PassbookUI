@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PBUPassbookLayout : UICollectionViewLayout
+@interface PBUPassListLayout : UICollectionViewLayout
 
 @end

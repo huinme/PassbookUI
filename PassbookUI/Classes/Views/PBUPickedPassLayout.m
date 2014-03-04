@@ -1,18 +1,29 @@
 //
-//  PBUPassbookLayout.m
+//  PBUPickedPassLayout.m
 //  PassbookUI
 //
-//  Created by huin on 2014/03/03.
-//  Copyright (c) 2014年 huin.me. All rights reserved.
+//  Created by Koichi Sakata on 3/4/14.
+//  Copyright (c) 2014 huin.me. All rights reserved.
 //
 
-#import "PBUPassbookLayout.h"
+#import "PBUPickedPassLayout.h"
 
-@interface PBUPassbookLayout()
+static const CGFloat kFrontPassHeight = 58.0f;
+
+@interface PBUPickedPassLayout()
 
 @end
 
-@implementation PBUPassbookLayout
+@implementation PBUPickedPassLayout
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _selectedIndexPath = nil;
+    }
+    return self;
+}
 
 - (CGSize)collectionViewContentSize
 {
@@ -66,12 +77,27 @@
     CGFloat hPadding = 2.0f;
     // size
     attributes.size = CGSizeMake(CGRectGetWidth(self.collectionView.bounds) - hPadding,
-                                 420.0f);
+                                 450.0f);
 
     // frame
     CGRect frame = CGRectZero;
     frame.origin.x = hPadding/2;
-    frame.origin.y = ([self collectionViewContentSize].height/items) * indexPath.row;
+
+    if (self.selectedIndexPath &&
+        NSOrderedSame == [indexPath compare:self.selectedIndexPath]) {
+        // SELECTED : one
+        frame.origin.y = 10.0f;
+    }else{
+        // SELECTED : others
+        frame.origin.y = [self collectionViewContentSize].height - kFrontPassHeight;
+
+        // そのままだと選択されたセル分大きく隙間が空くので、
+        // 選択されたindexPathより奥にある(= rowが小さい)ものは
+        // 1段階手前に持ってくる(= rowを大きくする)
+        NSInteger rowOffset = (self.selectedIndexPath.row > indexPath.row) ? indexPath.row + 1 : indexPath.row;
+        frame.origin.y -= 5.0f * (items - rowOffset);
+    }
+
     frame.size = attributes.size;
     attributes.frame = frame;
 
@@ -81,19 +107,10 @@
     // alpha
     attributes.alpha = 1.0f;
 
+    // z-index
+    attributes.zIndex = indexPath.row;
+    
     return attributes;
-}
-
-- (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind
-                                                                     atIndexPath:(NSIndexPath *)indexPath
-{
-    return nil;
-}
-
-- (UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString *)decorationViewKind
-                                                                  atIndexPath:(NSIndexPath *)indexPath
-{
-    return nil;
 }
 
 @end

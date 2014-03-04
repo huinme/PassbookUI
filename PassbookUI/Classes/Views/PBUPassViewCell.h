@@ -10,8 +10,8 @@
 
 @interface PBUPassViewCell : UICollectionViewCell
 
-@property (nonatomic, strong, readonly) UIView *contentView;
-
+@property (nonatomic, weak, readonly) IBOutlet UIView *contentView;
+@property (nonatomic, weak, readonly) IBOutlet UILabel *titleLabel;
 
 + (NSString *)reuseIdentifier;
 
