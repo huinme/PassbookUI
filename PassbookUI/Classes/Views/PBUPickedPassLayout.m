@@ -53,15 +53,12 @@ static const CGFloat kFrontPassHeight = 58.0f;
 {
     NSMutableArray *attributes = [NSMutableArray array];
 
-    NSInteger sections = self.collectionView.numberOfSections;
-    for (int section = 0; section < sections; ++section) {
-        NSInteger items = [self.collectionView numberOfItemsInSection:section];
-        for (int idx = 0; idx < items; ++idx) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:section];
-            UICollectionViewLayoutAttributes *attribute;
-            attribute = [self layoutAttributesForItemAtIndexPath:indexPath];
-            [attributes addObject:attribute];
-        }
+    NSInteger items = [self.collectionView numberOfItemsInSection:0];
+    for (int idx = 0; idx < items; ++idx) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+        UICollectionViewLayoutAttributes *attribute;
+        attribute = [self layoutAttributesForItemAtIndexPath:indexPath];
+        [attributes addObject:attribute];
     }
 
     return attributes;

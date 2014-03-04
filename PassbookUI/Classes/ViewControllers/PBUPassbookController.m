@@ -23,7 +23,8 @@
 @property (nonatomic, strong, readwrite) PBUPickedPassLayout *pickedLayout;
 
 - (void)updateCollectionViewWithLayout:(UICollectionViewLayout *)layout
-                              animated:(BOOL)animated;
+                              animated:(BOOL)animated
+                            completion:(void (^)(BOOL finished))completion;
 
 @end
 
@@ -65,7 +66,7 @@
                           delay:0.0f
          usingSpringWithDamping:3.0f
           initialSpringVelocity:0.01f
-                        options:UIViewAnimationOptionCurveEaseOut
+                        options:(UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionCurveEaseOut)
                      animations:^{
                          [self.collectionView setCollectionViewLayout:layout
                                                              animated:YES
@@ -122,9 +123,17 @@
     NSString *title = [NSString stringWithFormat:@"INDEX PATH : {%ld, %ld}", (long)indexPath.section, (long)indexPath.row];
     cell.titleLabel.text = title;
 
+
+    // set cell.draggable = YES only when layout is picked layout, and cell is selected..
     id layout = self.collectionView.collectionViewLayout;
     if ([layout isKindOfClass:[PBUPickedPassLayout class]]) {
-        cell.draggable = YES;
+
+        NSIndexPath *selectedIndexPath = [(PBUPickedPassLayout *)layout selectedIndexPath];
+
+        if (selectedIndexPath &&
+            NSOrderedSame == [selectedIndexPath compare:indexPath]) {
+            cell.draggable = YES;
+        }
     }else{
         cell.draggable = NO;
     }
@@ -144,10 +153,15 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
     UICollectionViewLayout *layout;
     if (self.pickedLayout.selectedIndexPath) {
         NSLog(@"LAYOUT FOR LIST");
+        self.collectionView.scrollEnabled = YES;
+
         self.pickedLayout.selectedIndexPath= nil;
         layout = self.listLayout;
     }else{
         NSLog(@"LAYOUT FOR PICKED");
+
+        self.collectionView.scrollEnabled = NO;
+
         self.pickedLayout.selectedIndexPath= indexPath;
         layout = self.pickedLayout;
     }
@@ -156,11 +170,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
                                 animated:YES
                               completion:^(BOOL finished) {
                                   [self.collectionView reloadData];
-                                  if (self.collectionView.collectionViewLayout == self.pickedLayout) {
-                                      self.collectionView.scrollEnabled = NO;
-                                  }else{
-                                      self.collectionView.scrollEnabled = YES;
-                                  }
                               }];
 }
 
@@ -179,9 +188,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
                               }];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-//    NSLog(@"offset : %@", NSStringFromCGPoint(scrollView.contentOffset));
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//}
 
 @end
